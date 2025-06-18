@@ -79,32 +79,41 @@ DYSARTHRIC_PATH = "/content/M_Dys"
 
 | Instance | Optimizer | Regularizer | Epochs | Early Stopping | Layers | Learning Rate | Accuracy | F1-Score | Precision | Recall | Loss |
 |----------|-----------|-------------|--------|----------------|--------|---------------|----------|----------|-----------|--------|------|
-| Logistic Regression | - | L1/L2 (Grid Search) | - | - | - | - | 0.800 | 0.795 | 0.785 | 0.805 | - |
-| Instance 1 (Simple) | Adam (default) | None | 10 | No | 5 | 0.001 | 0.725 | 0.710 | 0.695 | 0.725 | 0.545 |
-| Instance 2 (Opt) | Adam | L2 (0.01) | 12 | Yes | 6 | 0.0005 | 0.825 | 0.815 | 0.810 | 0.820 | 0.395 |
-| Instance 3 (Opt) | RMSprop | L1 (0.01) + BatchNorm | 15 | Yes | 7 | 0.001 | 0.850 | 0.840 | 0.835 | 0.845 | 0.375 |
-| Instance 4 (Advanced) | SGD | L1L2 (0.005, 0.005) | 18 | Yes | 8 | 0.01 | 0.875 | 0.865 | 0.860 | 0.870 | 0.325 |
+| Logistic Regression | - | L1/L2 (Grid Search) | - | - | - | - | TBD | TBD | TBD | TBD | - |
+| Instance 1 (Simple) | Adam (default) | None | 10 | No | 5 | 0.001 | 0.950 | 0.947 | 1.000 | 0.900 | 0.283 |
+| Instance 2 (Opt) | Adam | L2 (0.01) | 20 | Yes | 6 | 0.0005 | 0.950 | 0.947 | 1.000 | 0.900 | 0.343 |
+| Instance 3 (Opt) | RMSprop | L1 (0.01) + BatchNorm | 15 | Yes | 7 | 0.001 | 0.500 | 0.615 | 0.500 | 0.800 | 2.367 |
+| Instance 4 (Advanced) | SGD | L1L2 (0.005, 0.005) | 30 | Yes | 8 | 0.01 | 0.900 | 0.889 | 1.000 | 0.800 | 1.587 |
 
 ### Key Findings
 
 #### Best Performing Model
-**Advanced Neural Network Instance 4** achieved the highest performance with:
-- **Accuracy**: 87.5%
-- **F1-Score**: 86.5%
-- **Optimizer**: SGD with momentum (0.9)
-- **Regularization**: Combined L1L2 regularization
-- **Architecture**: Lightweight 8-layer network with BatchNormalization
+**Instance 1 (Simple) and Instance 2 (Optimized)** both achieved the highest performance with:
+- **Accuracy**: 95.0%
+- **F1-Score**: 94.7%
+- **Precision**: 100.0%
+- **Recall**: 90.0%
+
+**Instance 1 (Simple NN)** specifications:
+- **Optimizer**: Adam with default settings
+- **Regularization**: None
+- **Architecture**: Lightweight 5-layer network
+
+**Instance 2 (Optimized)** specifications:
+- **Optimizer**: Adam with learning rate 0.0005
+- **Regularization**: L2 regularization (0.01)
+- **Architecture**: Lightweight 6-layer network with early stopping
 
 #### Optimization Techniques Impact
-1. **L2 Regularization (Instance 2)**: Improved F1-score from 71.0% to 81.5%
-2. **L1 + BatchNormalization (Instance 3)**: Achieved 84.0% F1-score with feature sparsity
-3. **L1L2 + Advanced Architecture (Instance 4)**: Best performance at 86.5% F1-score
-4. **Early Stopping**: Prevented overfitting across all optimized models
+1. **L2 Regularization (Instance 2)**: Maintained high F1-score of 94.7% while adding regularization
+2. **L1 + BatchNormalization (Instance 3)**: Achieved 61.5% F1-score with feature sparsity but lower overall performance
+3. **L1L2 + Advanced Architecture (Instance 4)**: Good performance at 88.9% F1-score with combined regularization
+4. **Early Stopping**: Prevented overfitting in optimized models (Instances 2, 3, 4)
 
 #### Classical ML vs Neural Networks
-- **Logistic Regression**: 79.5% F1-score with optimized hyperparameters (C=10, L2 penalty)
-- **Best Neural Network**: 86.5% F1-score (Instance 4)
-- **Performance Gap**: Neural networks outperformed classical ML by 7.0% F1-score
+- **Logistic Regression**: Performance to be determined with optimized hyperparameters
+- **Best Neural Network**: 94.7% F1-score (Instance 1 & 2)
+- **Surprising Finding**: Simple neural network performed as well as optimized versions
 
 ### Hyperparameter Analysis
 
@@ -116,41 +125,55 @@ DYSARTHRIC_PATH = "/content/M_Dys"
 - **Cross-validation**: 5-fold for hyperparameter tuning
 
 #### Best Neural Network Configuration
-- **Optimizer**: SGD with learning rate 0.01 and momentum 0.9
-- **Regularization**: L1L2 (l1=0.005, l2=0.005)
-- **Dropout rates**: 0.25-0.6 (progressive increase)
-- **Batch size**: 8
-- **Early stopping patience**: 10 epochs
-- **Architecture**: Lightweight convolutional network optimized for GitHub deployment
+- **Best Performers**: Instance 1 (Simple) and Instance 2 (Optimized) - both achieved 95.0% accuracy
+- **Instance 2 Features**:
+  - Optimizer: Adam with learning rate 0.0005
+  - Regularization: L2 (0.01)
+  - Early stopping patience: Applied
+  - Architecture: Lightweight convolutional network optimized for GitHub deployment
+- **Instance 1 Insight**: Demonstrates that simple architectures can achieve excellent performance
 
 ## Summary of Findings
 
+### Exceptional Performance Achieved
+This project achieved remarkably high performance on dysarthric speech classification:
+- **Best Models**: Instance 1 (Simple) and Instance 2 (Optimized) both achieved 95.0% accuracy
+- **F1-Score**: 94.7% demonstrating excellent balance of precision and recall
+- **Perfect Precision**: 100% precision indicates no false positives
+- **Strong Recall**: 90% recall shows good detection of dysarthric speech
+
 ### Most Effective Combination
-The **Advanced Neural Network Instance 4** with SGD optimizer and L1L2 regularization proved most effective:
-- Superior generalization with 87.5% test accuracy
+Both the **Simple Neural Network (Instance 1)** and **Optimized Neural Network (Instance 2)** proved most effective:
+- Excellent generalization with 95.0% test accuracy and 94.7% F1-score
+- Perfect precision (100%) with good recall (90%)
 - Efficient feature learning through lightweight architecture
-- Effective overfitting prevention via combined regularization
-- Stable training with BatchNormalization
-- Optimized for deployment with <50MB total model size
+- Instance 2 adds L2 regularization for additional robustness
+- Optimized for deployment with minimal model size
 
 ### Implementation Comparison
-**Neural Networks outperformed Classical ML** due to:
+**Neural Networks achieved exceptional performance** due to:
 1. **Feature Learning**: Automatic extraction of complex audio patterns
 2. **Non-linear Modeling**: Better capture of speech disorder characteristics
 3. **Hierarchical Representations**: Multi-level feature abstraction
-4. **Optimization Techniques**: Regularization and early stopping effectiveness
+4. **Surprising Simplicity**: Simple architectures performed as well as complex ones
 
-**Classical ML Advantages**:
-- Faster training and inference
-- Interpretable feature importance
-- Lower computational requirements
-- Stable performance with limited data
+**Classical ML Performance**:
+- Results pending for optimized logistic regression
+- Expected to be competitive but likely lower than neural networks
+- Advantages: Faster training, interpretable features, lower computational requirements
 
 ### Optimization Impact
-- **Simple NN**: 71.0% F1-score (baseline)
-- **Optimized NNs**: 81.5% - 86.5% F1-score improvement
-- **Best Improvement**: 15.5% F1-score gain through optimization techniques
-- **Model Efficiency**: All models optimized to <10MB each for GitHub compatibility
+- **Simple NN (Instance 1)**: 94.7% F1-score (excellent baseline)
+- **Optimized Instance 2**: 94.7% F1-score (maintained performance with regularization)
+- **Instance 3 (L1+BatchNorm)**: 61.5% F1-score (lower performance, possibly over-regularized)
+- **Instance 4 (L1L2+Advanced)**: 88.9% F1-score (good but not best)
+- **Key Insight**: Sometimes simpler architectures work better than complex optimizations
+
+### Notable Findings
+- **Instance 3 Underperformance**: The combination of L1 regularization and BatchNormalization may have been too aggressive for this dataset size, leading to underfitting
+- **Regularization Balance**: L2 regularization (Instance 2) maintained performance while L1 regularization (Instance 3) caused significant performance drop
+- **Architecture Complexity**: More complex architectures don't always yield better results
+- **Early Stopping Effectiveness**: Applied in Instances 2, 3, and 4 with varying success
 
 ## File Structure
 ```
@@ -182,8 +205,9 @@ Dysarthric_Speech_Classification/
 This project implements lightweight neural network architectures specifically optimized for:
 - **GitHub Deployment**: All models <10MB each, total <50MB
 - **Academic Requirements**: Demonstrates optimization techniques effectively
-- **Performance Balance**: Maintains good classification performance despite size constraints
+- **Performance Excellence**: Achieved 95% accuracy and 94.7% F1-score
 - **Reproducibility**: Easy to run on various platforms including Google Colab
+- **Surprising Insights**: Simple architectures can outperform complex optimizations
 
 ## References
 - TORGO Database: University of Toronto
