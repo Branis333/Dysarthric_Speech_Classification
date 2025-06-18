@@ -1,5 +1,8 @@
 # Dysarthric Speech Classification using Machine Learning Optimization Techniques
 
+## Video Presentaion
+https://drive.google.com/file/d/1-mABonVLbJo4BB6WOTn3mUnVNnkpKUPP/view?usp=sharing 
+
 ## Project Overview
 This project addresses the classification of dysarthric speech patterns using advanced machine learning and neural network optimization techniques. Dysarthria is a speech disorder that affects motor speech control, making automated detection crucial for assistive technologies. The project compares traditional machine learning approaches with optimized neural networks to identify the most effective classification strategy. We utilize the TORGO dataset containing speech samples from both dysarthric speakers and healthy controls to develop robust classification models.
 
@@ -10,23 +13,6 @@ This project addresses the classification of dysarthric speech patterns using ad
 - **Features**: Audio files processed into MFCC, spectral features, and spectrograms
 - **Data Split**: 60% training, 20% validation, 20% testing
 
-## Installation and Setup
-
-### Prerequisites
-```bash
-pip install tensorflow>=2.15.0
-pip install librosa
-pip install scikit-learn
-pip install pandas
-pip install numpy
-pip install matplotlib
-pip install joblib
-```
-
-### For Google Colab
-```python
-!pip install librosa
-```
 
 ## How to Run
 
@@ -35,6 +21,17 @@ pip install joblib
 ```bash
 git clone https://github.com/yourusername/Dysarthric_Speech_Classification.git
 cd Dysarthric_Speech_Classification
+```
+## Create a virtual Environment
+
+```bash
+python -m  venv venv 
+```
+
+## Installation and Setup
+
+```bash
+pip install -r requirements.txt
 ```
 
 2. Ensure your dataset is organized as:
@@ -115,8 +112,6 @@ DYSARTHRIC_PATH = "/content/M_Dys"
 - **Best Neural Network**: 94.7% F1-score (Instance 1 & 2)
 - **Performance Gap**: Neural networks outperformed classical ML by 12.3% F1-score
 
-### Hyperparameter Analysis
-
 #### Logistic Regression (Best Classical ML)
 - **Regularization**: L1 penalty
 - **C parameter**: 0.1 (inverse regularization strength)
@@ -134,17 +129,6 @@ DYSARTHRIC_PATH = "/content/M_Dys"
   - Architecture: Lightweight convolutional network optimized for GitHub deployment
 - **Instance 1 Insight**: Demonstrates that simple architectures can achieve excellent performance
 
-## Summary of Findings
-
-### Exceptional Performance Achieved
-This project achieved remarkably high performance on dysarthric speech classification:
-- **Best Models**: Instance 1 (Simple) and Instance 2 (Optimized) both achieved 95.0% accuracy
-- **F1-Score**: 94.7% demonstrating excellent balance of precision and recall
-- **Perfect Precision**: 100% precision achieved by neural networks and logistic regression
-- **Strong Recall**: 90% recall for neural networks vs 70% for logistic regression
-- **Classical ML**: Logistic regression achieved solid 85.0% accuracy and 82.4% F1-score
-- **Neural Network Advantage**: 12.3% F1-score improvement over classical ML
-
 ### Most Effective Combination
 Both the **Simple Neural Network (Instance 1)** and **Optimized Neural Network (Instance 2)** proved most effective:
 - Excellent generalization with 95.0% test accuracy and 94.7% F1-score
@@ -153,75 +137,8 @@ Both the **Simple Neural Network (Instance 1)** and **Optimized Neural Network (
 - Instance 2 adds L2 regularization for additional robustness
 - Optimized for deployment with minimal model size
 
-### Implementation Comparison
-**Neural Networks achieved exceptional performance** due to:
-1. **Feature Learning**: Automatic extraction of complex audio patterns
-2. **Non-linear Modeling**: Better capture of speech disorder characteristics
-3. **Hierarchical Representations**: Multi-level feature abstraction
-4. **Surprising Simplicity**: Simple architectures performed as well as complex ones
-
-**Classical ML Performance**:
-- **Logistic Regression**: 85.0% accuracy, 82.4% F1-score with optimized hyperparameters
-- **Perfect Precision**: Achieved 100% precision like the best neural networks
-- **Lower Recall**: 70% recall vs 90% for best neural networks
-- **Advantages**: Faster training, interpretable features, lower computational requirements
-
-### Optimization Impact
-- **Logistic Regression**: 82.4% F1-score (strong classical ML baseline)
-- **Simple NN (Instance 1)**: 94.7% F1-score (excellent baseline)
-- **Optimized Instance 2**: 94.7% F1-score (maintained performance with regularization)
-- **Instance 3 (L1+BatchNorm)**: 61.5% F1-score (lower performance, possibly over-regularized)
-- **Instance 4 (L1L2+Advanced)**: 88.9% F1-score (good but not best)
-- **Key Insight**: Sometimes simpler architectures work better than complex optimizations
-
-### Notable Findings
-- **Instance 3 Underperformance**: The combination of L1 regularization and BatchNormalization may have been too aggressive for this dataset size, leading to underfitting
-- **Regularization Balance**: L2 regularization (Instance 2) maintained performance while L1 regularization (Instance 3) caused significant performance drop
-- **Architecture Complexity**: More complex architectures don't always yield better results
-- **Early Stopping Effectiveness**: Applied in Instances 2, 3, and 4 with varying success
-
-## File Structure
-```
-Dysarthric_Speech_Classification/
-├── README.md                           # Project documentation
-├── dysarthria2.ipynb                   # Main implementation notebook
-├── saved_models/                       # Trained model files (lightweight versions)
-│   ├── optimized_logistic_regression.pkl
-│   ├── simple_neural_network.h5
-│   ├── optimized_nn_instance2.h5
-│   ├── optimized_nn_instance3.h5
-│   ├── advanced_optimized_nn_instance4.h5
-│   └── model_sizes_summary.csv         # Model compression summary
-├── training_results_table.csv          # Detailed results table
-├── training_comparison.png             # Training history plots
-├── model_comparison.png                # Performance comparison charts
-└── final_confusion_matrix.png          # Best model confusion matrix
-```
-
-## Future Work
-- Implement attention mechanisms for sequence modeling
-- Explore transformer architectures for speech classification
-- Investigate cross-speaker generalization
-- Develop real-time classification system
-- Expand to multi-class severity classification
-- Scale models for larger datasets while maintaining GitHub compatibility
-
-## Model Optimization Notes
-This project implements lightweight neural network architectures specifically optimized for:
-- **GitHub Deployment**: All models <10MB each, total <50MB
-- **Academic Requirements**: Demonstrates optimization techniques effectively
-- **Performance Excellence**: Achieved 95% accuracy and 94.7% F1-score
-- **Reproducibility**: Easy to run on various platforms including Google Colab
-- **Surprising Insights**: Simple architectures can outperform complex optimizations
-
 ## References
 - TORGO Database: University of Toronto
 - TensorFlow/Keras framework
 - Scikit-learn machine learning library
 - Librosa audio processing library
-
-## License
-This project is licensed under the MIT License.
-
-## Contact
-For questions or collaboration, please open an issue in this repository.
