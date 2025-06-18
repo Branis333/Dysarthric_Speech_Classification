@@ -1,0 +1,6 @@
+Model,File Size (MB),Architecture,Parameters
+Logistic Regression,0.0011701583862304688,Linear Classifier,~40 features
+Simple NN,3.5646896362304688,2 Conv + 1 Dense,~2K params
+Instance 2,0.2369842529296875,2 Conv + 1 Dense + L2,~3K params
+Instance 3,0.2455596923828125,2 Conv + 1 Dense + L1+BN,~3K params
+Instance 4,0.8241653442382812,3 Conv + 2 Dense + L1L2,~5K params
