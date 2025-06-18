@@ -79,7 +79,7 @@ DYSARTHRIC_PATH = "/content/M_Dys"
 
 | Instance | Optimizer | Regularizer | Epochs | Early Stopping | Layers | Learning Rate | Accuracy | F1-Score | Precision | Recall | Loss |
 |----------|-----------|-------------|--------|----------------|--------|---------------|----------|----------|-----------|--------|------|
-| Logistic Regression | - | L1/L2 (Grid Search) | - | - | - | - | TBD | TBD | TBD | TBD | - |
+| Logistic Regression | - | L1/L2 (Grid Search) | - | - | - | - | 0.850 | 0.824 | 1.000 | 0.700 | - |
 | Instance 1 (Simple) | Adam (default) | None | 10 | No | 5 | 0.001 | 0.950 | 0.947 | 1.000 | 0.900 | 0.283 |
 | Instance 2 (Opt) | Adam | L2 (0.01) | 20 | Yes | 6 | 0.0005 | 0.950 | 0.947 | 1.000 | 0.900 | 0.343 |
 | Instance 3 (Opt) | RMSprop | L1 (0.01) + BatchNorm | 15 | Yes | 7 | 0.001 | 0.500 | 0.615 | 0.500 | 0.800 | 2.367 |
@@ -111,18 +111,19 @@ DYSARTHRIC_PATH = "/content/M_Dys"
 4. **Early Stopping**: Prevented overfitting in optimized models (Instances 2, 3, 4)
 
 #### Classical ML vs Neural Networks
-- **Logistic Regression**: Performance to be determined with optimized hyperparameters
+- **Logistic Regression**: 82.4% F1-score with optimized hyperparameters
 - **Best Neural Network**: 94.7% F1-score (Instance 1 & 2)
-- **Surprising Finding**: Simple neural network performed as well as optimized versions
+- **Performance Gap**: Neural networks outperformed classical ML by 12.3% F1-score
 
 ### Hyperparameter Analysis
 
 #### Logistic Regression (Best Classical ML)
-- **Regularization**: L2 penalty
-- **C parameter**: 10 (inverse regularization strength)
+- **Regularization**: L1 penalty
+- **C parameter**: 0.1 (inverse regularization strength)
 - **Solver**: liblinear
 - **Max iterations**: 1000
 - **Cross-validation**: 5-fold for hyperparameter tuning
+- **Performance**: 85.0% accuracy, 82.4% F1-score, 100% precision, 70% recall
 
 #### Best Neural Network Configuration
 - **Best Performers**: Instance 1 (Simple) and Instance 2 (Optimized) - both achieved 95.0% accuracy
@@ -139,8 +140,10 @@ DYSARTHRIC_PATH = "/content/M_Dys"
 This project achieved remarkably high performance on dysarthric speech classification:
 - **Best Models**: Instance 1 (Simple) and Instance 2 (Optimized) both achieved 95.0% accuracy
 - **F1-Score**: 94.7% demonstrating excellent balance of precision and recall
-- **Perfect Precision**: 100% precision indicates no false positives
-- **Strong Recall**: 90% recall shows good detection of dysarthric speech
+- **Perfect Precision**: 100% precision achieved by neural networks and logistic regression
+- **Strong Recall**: 90% recall for neural networks vs 70% for logistic regression
+- **Classical ML**: Logistic regression achieved solid 85.0% accuracy and 82.4% F1-score
+- **Neural Network Advantage**: 12.3% F1-score improvement over classical ML
 
 ### Most Effective Combination
 Both the **Simple Neural Network (Instance 1)** and **Optimized Neural Network (Instance 2)** proved most effective:
@@ -158,11 +161,13 @@ Both the **Simple Neural Network (Instance 1)** and **Optimized Neural Network (
 4. **Surprising Simplicity**: Simple architectures performed as well as complex ones
 
 **Classical ML Performance**:
-- Results pending for optimized logistic regression
-- Expected to be competitive but likely lower than neural networks
-- Advantages: Faster training, interpretable features, lower computational requirements
+- **Logistic Regression**: 85.0% accuracy, 82.4% F1-score with optimized hyperparameters
+- **Perfect Precision**: Achieved 100% precision like the best neural networks
+- **Lower Recall**: 70% recall vs 90% for best neural networks
+- **Advantages**: Faster training, interpretable features, lower computational requirements
 
 ### Optimization Impact
+- **Logistic Regression**: 82.4% F1-score (strong classical ML baseline)
 - **Simple NN (Instance 1)**: 94.7% F1-score (excellent baseline)
 - **Optimized Instance 2**: 94.7% F1-score (maintained performance with regularization)
 - **Instance 3 (L1+BatchNorm)**: 61.5% F1-score (lower performance, possibly over-regularized)
